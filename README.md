@@ -2,6 +2,8 @@
 
 Project documentation with Markdown.
 
+This fork adds the `project_url` config option to allow multiple MkDocs to run on the same domain side-by-side. Some theme work is also required. This is a bit of a hack, but I needed the result and didn't have more time.
+
 ---
 
 [![PyPI Downloads][pypi-dl-image]][pypi-dl-link]
