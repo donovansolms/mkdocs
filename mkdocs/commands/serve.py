@@ -62,7 +62,6 @@ def serve(config_file=None, dev_addr=None, strict=None, theme=None,
 
     # Create a temporary build directory, and set some options to serve it
     tempdir = tempfile.mkdtemp()
-
     def builder():
         log.info("Building documentation...")
         config = load_config(

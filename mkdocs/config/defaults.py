@@ -26,6 +26,8 @@ DEFAULT_SCHEMA = (
     # The full URL to where the documentation will be hosted
     ('site_url', config_options.URL()),
 
+    ('project_url', config_options.ProjectURL()),
+
     # A description for the documentation project that will be added to the
     # HTML meta tags.
     ('site_description', config_options.Type(utils.string_types)),

@@ -41,7 +41,7 @@ class SearchIndex(object):
             'location': loc
         })
 
-    def add_entry_from_context(self, page, content, toc):
+    def add_entry_from_context(self, page, content, toc, project_url):
         """
         Create a set of entries in the index for a page. One for
         the page itself and then one for each of its' heading
@@ -63,11 +63,11 @@ class SearchIndex(object):
         self._add_entry(
             title=page.title,
             text=self.strip_tags(content).rstrip('\n'),
-            loc=abs_url
+            loc=project_url + abs_url
         )
 
         for section in parser.data:
-            self.create_entry_for_section(section, toc, abs_url)
+            self.create_entry_for_section(section, toc, project_url + abs_url)
 
     def create_entry_for_section(self, section, toc, abs_url):
         """

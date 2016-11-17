@@ -73,7 +73,6 @@ def get_global_context(nav, config):
     # Support SOURCE_DATE_EPOCH environment variable for "reproducible" builds.
     # See https://reproducible-builds.org/specs/source-date-epoch/
     timestamp = int(os.environ.get('SOURCE_DATE_EPOCH', timegm(datetime.utcnow().utctimetuple())))
-
     return {
         'nav': nav,
         'base_url': nav.url_context.make_relative('/'),
@@ -90,6 +89,7 @@ def get_global_context(nav, config):
         'site_name': config['site_name'],
         'site_url': config['site_url'],
         'site_author': config['site_author'],
+        'project_url': config['project_url'],
         'homepage_url': nav.homepage.url,
         'page_description': config['site_description'],
         'favicon': config['site_favicon'],
@@ -262,6 +262,7 @@ def build_pages(config, dump_json=False, dirty=False):
         'content': 'page.content',
         'toc': 'page.toc',
         'meta': 'page.meta',
+        'current_page': 'page.current_page',
         'canonical_url': 'page.canonical_url',
         'previous_page': 'page.previous_page',
         'next_page': 'page.next_page',
@@ -332,7 +333,7 @@ def build_pages(config, dump_json=False, dirty=False):
                                        dump_json)
             html_content, table_of_contents, _ = build_result
             search_index.add_entry_from_context(
-                page, html_content, table_of_contents)
+                page, html_content, table_of_contents, config['project_url'])
         except Exception:
             log.error("Error building page %s", page.input_path)
             raise

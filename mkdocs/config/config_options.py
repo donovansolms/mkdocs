@@ -181,6 +181,18 @@ class URL(OptionallyRequired):
         raise ValidationError(
             "The URL isn't valid, it should include the http:// (scheme)")
 
+class ProjectURL(OptionallyRequired):
+    """
+    The Project URL Config Option
+
+    """
+
+    def __init__(self, default='', required=False):
+        super(ProjectURL, self).__init__(default, required)
+
+    def run_validation(self, value):
+        return value
+
 
 class RepoURL(URL):
     """
